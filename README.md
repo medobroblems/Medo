@@ -88,9 +88,6 @@
       } else if (id) {
         // لو فيه id نعرضه
         document.getElementById('showId').innerText = id;
-      } else {
-        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
-      }
     };
 
     const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
