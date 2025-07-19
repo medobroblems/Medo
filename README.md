@@ -99,7 +99,7 @@
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log("✅ تم الإرسال:", data);
+        console.log("✅ تم الإرسال:");
         alert("✅ تم إرسال البيانات!");
       })
       .catch(error => {
