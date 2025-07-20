@@ -60,6 +60,7 @@
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
+    
   <script>
   window.onload = function () {
     const params = new URLSearchParams(window.location.search);
@@ -97,7 +98,7 @@
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log("✅ تم الإرسال:");
+        console.log("✅ تم الإرسال:", data);
         alert("✅ تم إرسال البيانات!");
       })
       .catch(error => {
