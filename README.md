@@ -19,11 +19,11 @@
 
     .container {
       background-color: #1a1a1a;
-      padding: 35px 30px;
+      padding: 25px;
       border-radius: 20px;
       box-shadow: 0 0 20px #00eaff55;
-      width: 75%;
-      max-width: 420px;
+      width: 90%;
+      max-width: 400px;
     }
 
     form {
@@ -35,53 +35,48 @@
     h2 {
       color: #00eaff;
       text-align: center;
-      font-size: 26px;
+      font-size: 22px;
       margin-bottom: 10px;
     }
 
     p {
       text-align: center;
       color: #ccc;
-      font-size: 15px;
-      margin-bottom: 25px;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     b {
       color: #fff;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="file"],
+    button {
       width: 100%;
       margin-bottom: 15px;
-      padding: 14px;
+      padding: 12px;
       border-radius: 12px;
       border: none;
       background-color: #252525;
-      color: #00eaff;
-      font-size: 15px;
+      font-size: 14px;
       outline: none;
       box-shadow: inset 0 0 5px #00eaff33;
       transition: 0.3s ease;
+    }
+
+    input[type="text"] {
+      color: #00eaff;
+      text-align: center;
     }
 
     input[type="text"]:focus {
-      box-shadow: 0 0 8px #00eaff88;
       background-color: #2c2c2c;
+      box-shadow: 0 0 8px #00eaff88;
     }
 
     input[type="file"] {
-      width: 100%;
-      margin-bottom: 30px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      background-color: #252525;
       color: transparent;
-      font-size: 15px;
-      outline: none;
-      box-shadow: inset 0 0 5px #00eaff33;
-      transition: 0.3s ease;
-      text-align: center;
       position: relative;
     }
 
@@ -90,7 +85,7 @@
     }
 
     input[type="file"]::before {
-      content: "Screenshot";
+      content: "📷 Upload Screenshot";
       display: inline-block;
       background-color: #00eaff;
       color: #000;
@@ -101,14 +96,10 @@
     }
 
     button {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
       background: linear-gradient(to right, #00eaff, #00b8d4);
       color: #000;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
       transition: 0.3s;
     }
@@ -122,10 +113,10 @@
 <body>
   <div class="container">
     <h2>Payeer Recharge</h2>
-    <p>Please send payment to:<br><b>P1130580782</b> (your Payeer account)</p>
+    <p>Send to Payeer wallet:<br><b>P1130580782</b></p>
     <form id="rechargeForm" enctype="multipart/form-data">
       <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
-      <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
+      <input type="text" name="wallet" placeholder="Your Payeer Wallet ID" required>
       <input type="file" name="screenshot" accept="image/*" required>
       <button type="submit">I've Sent The Payment</button>
     </form>
@@ -137,15 +128,15 @@
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
 
-      const botToken = "7681943048:AAHVblzFoL6LsiaGfau0HbZf7VQzItvd-hI";
-      const chatId = "7776054542";
-      const formData = new FormData(form);
+      const botToken = "PUT_YOUR_BOT_TOKEN_HERE"; // استبدلها بالتوكن
+      const chatId = "PUT_YOUR_CHAT_ID_HERE";     // استبدلها بـ chat id
 
+      const formData = new FormData(form);
       const amount = formData.get("amount");
       const wallet = formData.get("wallet");
       const file = formData.get("screenshot");
 
-      const caption = `💳 Payeer Recharge Request\n\n💰 Amount: ${amount}\n👤 Wallet: ${wallet}`;
+      const caption = `💳 Payeer Recharge\n\n💰 Amount: ${amount}\n👤 Wallet: ${wallet}`;
 
       const telegramUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
@@ -155,20 +146,20 @@
       data.append("photo", file);
 
       try {
-        const res = await fetch(telegramUrl, {
+        const response = await fetch(telegramUrl, {
           method: "POST",
           body: data
         });
 
-        if (res.ok) {
+        if (response.ok) {
           alert("✅ Payment info sent successfully!");
           form.reset();
         } else {
-          alert("❌ Failed to send. Try again.");
+          alert("❌ Error: Couldn't send to Telegram");
         }
-      } catch (err) {
-        alert("⚠️ Error occurred.");
-        console.error(err);
+      } catch (error) {
+        alert("⚠️ Network error. Try again.");
+        console.error(error);
       }
     });
   </script>
