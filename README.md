@@ -139,7 +139,7 @@
       const formData = new FormData(form);
 
       try {
-        const res = await fetch("send.php", {
+        const res = await fetch("https://YOUR_DOMAIN/send.php", {
           method: "POST",
           body: formData
         });
