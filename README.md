@@ -122,27 +122,32 @@
 <body>
   <div class="container">
     <h2>Payeer Recharge</h2>
-    <p>Please send payment to :<br></p>
-    <p></p>
+    <p>Send payment to:</p>
     <p><b>P1130580782</b></p>
     <form id="rechargeForm" enctype="multipart/form-data">
       <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
       <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
       <input type="file" name="screenshot" accept="image/*" required>
+      <input type="hidden" name="user_id" id="user_id">
       <button type="submit">I've Sent The Payment</button>
     </form>
   </div>
 
   <script>
-    const form = document.getElementById("rechargeForm");
+    // التقاط ID من رابط الصفحة
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get('id') || 'غير معروف';
+      document.getElementById("user_id").value = userId;
+    };
 
+    const form = document.getElementById("rechargeForm");
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
-
       const formData = new FormData(form);
 
       try {
-        const res = await fetch("https://m3dosms.darksidehost.com/aaaa/send.php", {
+        const res = await fetch("send.php", {
           method: "POST",
           body: formData
         });
@@ -159,22 +164,6 @@
         alert("⚠️ حصل خطأ: " + err.message);
       }
     });
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const chatId = params.get('chatId');
-      const id = params.get('id');
-
-      if (chatId) {
-        // لو فيه chatId نحوله إلى id في نفس الصفحة
-        const targetURL = `${window.location.pathname}?id=${chatId}`;
-        window.location.href = targetURL;
-      } else if (id) {
-        // لو فيه id نعرضه
-        document.getElementById('showId').innerText = id;
-      } else {
-        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
-      }
-    };
   </script>
 </body>
 </html>
