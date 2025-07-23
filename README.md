@@ -22,7 +22,7 @@
       padding: 35px 30px;
       border-radius: 20px;
       box-shadow: 0 0 20px #00eaff55;
-      width: 75%;
+      width: 80%;
       max-width: 420px;
     }
 
@@ -51,7 +51,7 @@
     }
 
     input[type="text"] {
-      width: 100%;
+      width: 90%;
       margin-bottom: 15px;
       padding: 14px;
       border-radius: 12px;
@@ -68,40 +68,13 @@
       box-shadow: 0 0 8px #00eaff88;
       background-color: #2c2c2c;
     }
-
-    input[type="file"] {
-      width: 100%;
-      margin-bottom: 25px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      background-color: #252525;
-      color: transparent;
-      font-size: 15px;
-      outline: none;
-      box-shadow: inset 0 0 5px #00eaff33;
-      transition: 0.3s ease;
-      text-align: center;
-      position: relative;
-    }
-
-    input[type="file"]::-webkit-file-upload-button {
-      visibility: hidden;
-    }
-
-    input[type="file"]::before {
-      content: "📷 Upload Screenshot";
-      display: inline-block;
-      background-color: #00eaff;
-      color: #000;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    
+    input[name="wallet"] {
+  margin-bottom: 50px;
+}
 
     button {
-      width: 100%;
+      width: 70%;
       padding: 14px;
       border-radius: 12px;
       border: none;
@@ -117,44 +90,36 @@
       opacity: 0.9;
       box-shadow: 0 0 8px #00eaff99;
     }
+   
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Payeer Recharge</h2>
-    <p>Please send payment to:<br><b>P1130580782</b></p>
-    <form id="rechargeForm" enctype="multipart/form-data">
+    <p>Please send payment to :<br></p>
+    <b><p>P1130580782</p></b>
+    <form id="rechargeForm">
       <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
       <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
-      <input type="file" name="screenshot" accept="image/*" required>
       <button type="submit">I've Sent The Payment</button>
     </form>
   </div>
 
   <script>
     const form = document.getElementById("rechargeForm");
-
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
-
       const formData = new FormData(form);
-
       try {
-        const res = await fetch("https://m3dosms.darksidehost.com/aaaa/send.php", {
+        const response = await fetch("https://m3dosms.darksidehost.com/aaaa/send.php", {
           method: "POST",
           body: formData
         });
-
-        const result = await res.text();
-
-        if (res.ok) {
-          alert("✅ " + result);
-          form.reset();
-        } else {
-          alert("❌ Error: " + result);
-        }
+        const result = await response.text();
+        alert(result);
+        form.reset();
       } catch (err) {
-        alert("⚠️ حصل خطأ: " + err.message);
+        alert("⚠️ حصل خطأ أثناء الإرسال: " + err.message);
       }
     });
   </script>
