@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -22,7 +21,7 @@
       padding: 35px 30px;
       border-radius: 20px;
       box-shadow: 0 0 20px #00eaff55;
-      width: 80%;
+      width: 100%;
       max-width: 420px;
     }
 
@@ -51,7 +50,7 @@
     }
 
     input[type="text"] {
-      width: 90%;
+      width: 100%;
       margin-bottom: 15px;
       padding: 14px;
       border-radius: 12px;
@@ -69,7 +68,7 @@
     }
 
     button {
-      width: 70%;
+      width: 100%;
       padding: 14px;
       border-radius: 12px;
       border: none;
