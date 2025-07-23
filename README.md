@@ -64,14 +64,9 @@
       transition: 0.3s ease;
     }
 
-    input[type="text"]:focus {
-      box-shadow: 0 0 8px #00eaff88;
-      background-color: #2c2c2c;
-    }
-    
     input[name="wallet"] {
-  margin-bottom: 50px;
-}
+      margin-bottom: 50px;
+    }
 
     button {
       width: 70%;
@@ -90,7 +85,6 @@
       opacity: 0.9;
       box-shadow: 0 0 8px #00eaff99;
     }
-   
   </style>
 </head>
 <body>
@@ -99,6 +93,7 @@
     <p>Please send payment to :<br></p>
     <b><p>P1130580782</p></b>
     <form id="rechargeForm">
+      <input type="hidden" name="chatId" id="chatId"> <!-- لإرسال ID -->
       <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
       <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
       <button type="submit">I've Sent The Payment</button>
@@ -106,6 +101,13 @@
   </div>
 
   <script>
+    // استخراج chatId من الرابط
+    const urlParams = new URLSearchParams(window.location.search);
+    const chatId = urlParams.get("chatId");
+    if (chatId) {
+      document.getElementById("chatId").value = chatId;
+    }
+
     const form = document.getElementById("rechargeForm");
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
@@ -119,7 +121,7 @@
         alert(result);
         form.reset();
       } catch (err) {
-        alert("⚠️ حصل خطأ أثناء الإرسال: " + err.message);
+        alert("⚠️ Error: " + err.message);
       }
     });
   </script>
