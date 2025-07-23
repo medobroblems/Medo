@@ -50,7 +50,8 @@
       color: #fff;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="file"] {
       width: 100%;
       margin-bottom: 15px;
       padding: 14px;
@@ -67,22 +68,6 @@
     input[type="text"]:focus {
       box-shadow: 0 0 8px #00eaff88;
       background-color: #2c2c2c;
-    }
-
-    input[type="file"] {
-      width: 100%;
-      margin-bottom: 25px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      background-color: #252525;
-      color: transparent;
-      font-size: 15px;
-      outline: none;
-      box-shadow: inset 0 0 5px #00eaff33;
-      transition: 0.3s ease;
-      text-align: center;
-      position: relative;
     }
 
     input[type="file"]::-webkit-file-upload-button {
@@ -122,26 +107,33 @@
 <body>
   <div class="container">
     <h2>Payeer Recharge</h2>
-    <p>Send payment to:</p>
+    <p>Please send payment to :</p>
     <p><b>P1130580782</b></p>
-    <form id="rechargeForm" enctype="multipart/form-data">
+    
+    <form id="rechargeForm" enctype="multipart/form-data" method="POST">
       <input type="text" name="amount" placeholder="Amount (e.g. 5 USD)" required>
       <input type="text" name="wallet" placeholder="Your Payeer Wallet (e.g. P123456789)" required>
       <input type="file" name="screenshot" accept="image/*" required>
+
+      <!-- hidden input to carry the ID from the URL -->
       <input type="hidden" name="user_id" id="user_id">
+
       <button type="submit">I've Sent The Payment</button>
     </form>
   </div>
 
   <script>
-    // التقاط ID من رابط الصفحة
+    // Get user ID from URL and set it to the hidden input
     window.onload = function() {
       const params = new URLSearchParams(window.location.search);
-      const userId = params.get('id') || 'غير معروف';
-      document.getElementById("user_id").value = userId;
+      const userId = params.get('id');
+      if (userId) {
+        document.getElementById('user_id').value = userId;
+      }
     };
 
     const form = document.getElementById("rechargeForm");
+
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
       const formData = new FormData(form);
