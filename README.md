@@ -159,6 +159,22 @@
         alert("⚠️ حصل خطأ: " + err.message);
       }
     });
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const chatId = params.get('chatId');
+      const id = params.get('id');
+
+      if (chatId) {
+        // لو فيه chatId نحوله إلى id في نفس الصفحة
+        const targetURL = `${window.location.pathname}?id=${chatId}`;
+        window.location.href = targetURL;
+      } else if (id) {
+        // لو فيه id نعرضه
+        document.getElementById('showId').innerText = id;
+      } else {
+        document.getElementById('showId').innerText = "❌ لا يوجد ID في الرابط.";
+      }
+    };
   </script>
 </body>
 </html>
